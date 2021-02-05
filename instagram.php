@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Instagram API</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</head>
-<body>
-
-
 <style>
   .posts{
     display: -webkit-box;
@@ -17,7 +8,6 @@
     display: flex;
     flex-wrap: wrap;
   }
-
   .like-comment{
     font-size: 10px;
     color:#333;
@@ -25,7 +15,6 @@
     font-weight: bold;
   }
 </style>
-
 <div class="container" style="margin-top:20px;margin-bottom:20px;padding:50px;background-color:#ddd;">
   <div class="row">
     <div class="col-md-3">
@@ -58,10 +47,11 @@
     </div>
   </div>
 </div>
-
 <script>
   function nFormatter(num){
-    
+    if(num >= 1000000000){
+      return (num/1000000000).toFixed(1).replace(/\.0$/,'') + 'G';
+    }
     if(num >= 1000000){
       return (num/1000000).toFixed(1).replace(/\.0$/,'') + 'M';
     }
@@ -70,8 +60,6 @@
     }
     return num;
   }
-
-
   $.ajax({
     url:"https://www.instagram.com/<?php echo $_GET['user'];?>?__a=1",
     type:'get',
@@ -95,5 +83,3 @@
     }
   });
 </script>
-</body>
-</html>
